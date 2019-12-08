@@ -24,22 +24,27 @@ public class Controller2D : MonoBehaviour
     {
         collider = GetComponent<BoxCollider2D>();
         CalculateRaySpacing();
+        collisions.faceDir = 1;
     }
 
     public void Move(Vector3 velocity) 
     {
         UpdateRaycastOrigins();
         collisions.Reset();
+        collisions.velocityOld = velocity;
+
+        if (velocity.x != 0) 
+        {
+            collisions.faceDir = (int)Mathf.Sign(velocity.x);
+        }
 
         if (velocity.y < 0) 
         {
             DescendSlope(ref velocity);
         }
-        if (velocity.x != 0) 
-        {
-            HorizontalCollisions(ref velocity);
-        }
 
+        HorizontalCollisions(ref velocity);
+        
         if (velocity.y != 0) 
         {
             VerticalCollisions(ref velocity); 
@@ -51,8 +56,13 @@ public class Controller2D : MonoBehaviour
 
     void HorizontalCollisions(ref Vector3 velocity) 
     {
-        float directionX = Mathf.Sign(velocity.x);
+        float directionX = collisions.faceDir;
         float rayLength = Mathf.Abs(velocity.x) + skinWidth;
+
+        if (Mathf.Abs(velocity.x) < skinWidth) 
+        {
+            rayLength = 2 * skinWidth;
+        }
 
         for (int i = 0; i < horizontalRayCount; i++)
         {
@@ -68,6 +78,11 @@ public class Controller2D : MonoBehaviour
                 
                 if (i == 0 && slopeAngle <= maxClimbAngle) 
                 {
+                    if (collisions.descendingSlope) 
+                    {
+                        collisions.descendingSlope = false;
+                        velocity = collisions.velocityOld;
+                    }
                     float distanceToSlopeStart = 0;
                     if (slopeAngle != collisions.slopeAngleOld) 
                     {
@@ -228,6 +243,8 @@ public class Controller2D : MonoBehaviour
         public bool climbingSlope;
         public bool descendingSlope;
         public float slopeAngle, slopeAngleOld;
+        public Vector3 velocityOld;
+        public int faceDir;
 
         public void Reset() 
         {
