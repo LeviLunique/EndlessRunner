@@ -10,7 +10,8 @@ public class Controller2D : RaycastController
     float maxDescendAngle = 80;
 
     public CollisionInfo collisions;
-    Vector2 playerInput;
+    [HideInInspector]
+    public Vector2 playerInput;
     
     public override void Start() 
     {
@@ -18,7 +19,7 @@ public class Controller2D : RaycastController
         collisions.faceDir = 1;
     }
 
-    public void Move(Vector3 velocity, bool standingOnPlatform = false) 
+    public void Move(Vector3 velocity, bool standingOnPlatform) 
     {
         Move(velocity, Vector2.zero, standingOnPlatform);
     }
@@ -69,7 +70,7 @@ public class Controller2D : RaycastController
         for (int i = 0; i < horizontalRayCount; i++)
         {
             Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft : raycastOrigins.bottomRight;
-            rayOrigin += Vector2.up * (verticalRaySpacing * i);
+            rayOrigin += Vector2.up * (horizontalRaySpacing * i);
             RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.right * directionX, rayLength, collisionMask);
 
             Debug.DrawRay(rayOrigin, Vector2.right * directionX * rayLength, Color.red);
