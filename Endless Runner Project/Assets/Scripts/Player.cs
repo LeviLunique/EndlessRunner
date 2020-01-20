@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     float accelerationTimeGrounded = .1f;
     float moveSpeed = 6;
 
+    private Animator animator;
+
     public Vector2 wallJumpClimb;
     public Vector2 wallJumpOff;
     public Vector2 wallLeap;
@@ -26,7 +28,7 @@ public class Player : MonoBehaviour
     Vector3 velocity;
     float velocityXSmoothing;
 
-    Controller2D controller;
+    public Controller2D controller;
 
     Vector2 directionalInput;
     bool wallSliding;
@@ -39,7 +41,8 @@ public class Player : MonoBehaviour
         gravity = -(2 * maxJumpHeight) / Mathf.Pow(timeToJumpApex, 2);
         maxJumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
         minJumpVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * minJumpHeight);
-        print("Gravity: " + gravity + " Jump Velocity: " + maxJumpVelocity);
+        animator = GetComponent<Animator>();
+
     }
 
     void Update()
@@ -61,6 +64,9 @@ public class Player : MonoBehaviour
             }
 
         }
+
+        animator.SetFloat("Speed", velocity.x);
+        animator.SetBool("Grounded", controller.collisions.below);
     }
 
     public void SetDirectionalInput (Vector2 input) 
@@ -70,7 +76,6 @@ public class Player : MonoBehaviour
 
     public void OnJumpInputDown() 
     {
-
         if (wallSliding)
         {
             if (wallDirX == directionalInput.x)
@@ -151,8 +156,10 @@ public class Player : MonoBehaviour
 
     void CalculateVelocity() 
     {
-        float targetVelocityX = directionalInput.x * moveSpeed;
+        //float targetVelocityX = directionalInput.x * moveSpeed;
+        float targetVelocityX = moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
     }
+
 }

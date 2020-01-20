@@ -21,18 +21,20 @@ public class CameraFollow : MonoBehaviour
 
     bool lookAheadStopped;
 
+
     void Start () 
     {
         focusArea = new FocusArea(target.collider.bounds, focusAreaSize);
     }
-
-    void LateUpdate() 
+ 
+    void LateUpdate()
     {
+
         focusArea.Update(target.collider.bounds);
 
         Vector2 focusPosition = focusArea.centre + Vector2.up * verticalOffset;
 
-        if (focusArea.velocity.x != 0) 
+        if (focusArea.velocity.x != 0)
         {
             lookAheadDirX = Mathf.Sign(focusArea.velocity.x);
             if (Mathf.Sign(target.playerInput.x) == Mathf.Sign(focusArea.velocity.x) && target.playerInput.x != 0)
@@ -40,9 +42,9 @@ public class CameraFollow : MonoBehaviour
                 lookAheadStopped = false;
                 targetLookAheadX = lookAheadDirX * lookAheadDstX;
             }
-            else 
+            else
             {
-                if (!lookAheadStopped) 
+                if (!lookAheadStopped)
                 {
                     lookAheadStopped = true;
                     targetLookAheadX = currentLookAheadX + (lookAheadDirX * lookAheadDstX - currentLookAheadX) / 4f;
@@ -56,7 +58,7 @@ public class CameraFollow : MonoBehaviour
         focusPosition.y = Mathf.SmoothDamp(transform.position.y, focusPosition.y, ref smoothVelocityY, verticalSmoothTime);
         focusPosition += Vector2.right * currentLookAheadX;
 
-        transform.position = (Vector3)focusPosition + Vector3.forward * -10;
+        transform.position = (Vector3)focusPosition + Vector3.forward * -1;
     }
 
     void OnDrawGizmos() 
@@ -86,6 +88,7 @@ public class CameraFollow : MonoBehaviour
 
         public void Update (Bounds targetBounds) 
         {
+
             float shiftX = 0;
             if (targetBounds.min.x < left)
             {
@@ -101,6 +104,7 @@ public class CameraFollow : MonoBehaviour
 
 
             float shiftY = 0;
+                       
             if (targetBounds.min.y < bottom)
             {
                 shiftY = targetBounds.min.y - bottom;
@@ -109,9 +113,11 @@ public class CameraFollow : MonoBehaviour
             {
                 shiftY = targetBounds.max.y - top;
             }
+            
 
             top += shiftY;
             bottom += shiftY;
+            
 
             centre = new Vector2 ((left + right) / 2, (top + bottom) / 2);
             velocity = new Vector2(shiftX, shiftY);
