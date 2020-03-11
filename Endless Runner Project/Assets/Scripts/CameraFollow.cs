@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
 
     void Start () 
     {
-        focusArea = new FocusArea(target.collider.bounds, focusAreaSize);
+        focusArea = new FocusArea(target.collider.bounds, focusAreaSize, target);
     }
  
     void LateUpdate()
@@ -71,16 +71,21 @@ public class CameraFollow : MonoBehaviour
     {
         public Vector2 centre;
         public Vector2 velocity;
+        public Vector2 areaSize;
+        public Controller2D targetController;
 
         float left, right;
         float top, bottom;
 
-        public FocusArea(Bounds targetBounds, Vector2 size) 
+        public FocusArea(Bounds targetBounds, Vector2 size, Controller2D controller) 
         {
             left = targetBounds.center.x - size.x / 2;
             right = targetBounds.center.x + size.x / 2;
             bottom = targetBounds.min.y;
             top = targetBounds.min.y + size.y;
+            areaSize = size;
+            targetController = controller;
+            
 
             velocity = Vector2.zero;
             centre = new Vector2((left + right) / 2, (top + bottom) / 2);
@@ -102,25 +107,35 @@ public class CameraFollow : MonoBehaviour
             left += shiftX;
             right += shiftX;
 
-
+            
             float shiftY = 0;
-                       
-            if (targetBounds.min.y < bottom)
+            if (targetController.collisions.below)
             {
-                shiftY = targetBounds.min.y - bottom;
+
+                bottom = targetBounds.min.y;
+                top = targetBounds.min.y + areaSize.y;
+
+
+                centre = new Vector2((left + right) / 2, (top + bottom) / 2);
             }
-            else if (targetBounds.max.y > top)
+            else 
             {
-                shiftY = targetBounds.max.y - top;
-            }
-            
+                if (targetBounds.min.y < bottom)
+                {
+                    shiftY = targetBounds.min.y + areaSize.y;
+                }
 
-            top += shiftY;
-            bottom += shiftY;
-            
+                else if (targetBounds.max.y > top)
+                {
+                    shiftY = targetBounds.max.y + areaSize.y;
+                }
 
-            centre = new Vector2 ((left + right) / 2, (top + bottom) / 2);
-            velocity = new Vector2(shiftX, shiftY);
+                top += shiftY;
+                bottom += shiftY;
+
+                centre = new Vector2((left + right) / 2, (top + bottom) / 2);
+                velocity = new Vector2(shiftX, shiftY);
+            }        
         }
     }
 }

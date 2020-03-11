@@ -114,6 +114,11 @@ public class Controller2D : RaycastController
                     collisions.left = directionX == -1;
                     collisions.right = directionX == 1;
                 }
+
+                if (hit.collider.tag == "Through")
+                {
+                    continue;
+                }
             }
         }
     }
