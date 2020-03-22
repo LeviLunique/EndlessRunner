@@ -4,40 +4,37 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public Transform firstPlatform;
-    public Transform lastPlatform;
-    public Transform generationPoint;
 
     public ObjectPooler objectPool;
     public Vector3 spawnValues;
-    public bool actvateRandomSpace = false;
-
-    private float platformWidth;
-    private float heightDifference;
-
-    public float distanceBetween;
-    public float distanceBetweenMin;
-    public float distanceBetweenMax;
+    public int hazardCount;
+    public float spawnWait;
+    public float startWait;
+    public float waveWait;
 
     void Start()
     {
-        platformWidth = firstPlatform.transform.localScale.x;
-        heightDifference = Mathf.Abs(firstPlatform.transform.position.y - lastPlatform.transform.position.y);
+        StartCoroutine (SpawnWaves());
     }
 
-    void Update() 
+    IEnumerator SpawnWaves()
     {
-        if (transform.position.x < generationPoint.position.x)
+        yield return new WaitForSeconds(startWait);
+        while (true)
         {
-            transform.position = new Vector3(transform.position.x + platformWidth + distanceBetween, transform.position.y + heightDifference, transform.position.z);
+            for (int i = 0; i < hazardCount; i++)
+            {
+                Vector3 spawnPosition = new Vector3(spawnValues.x, spawnValues.y, spawnValues.z);
+                GameObject newPlatform = objectPool.GetPooledObject();
 
-            Vector3 spawnPosition = new Vector3(spawnValues.x, spawnValues.y, spawnValues.z);
-            GameObject newPlatform = objectPool.GetPooledObject();
-
-            newPlatform.transform.position = spawnPosition;
-            newPlatform.transform.rotation = transform.rotation;
-            newPlatform.SetActive(true);
+                newPlatform.transform.position = spawnPosition;
+                newPlatform.transform.rotation = transform.rotation;
+                newPlatform.SetActive(true);
+                yield return new WaitForSeconds(spawnWait);
+            }
+            yield return new WaitForSeconds(waveWait);
         }
+
     }
 
 }

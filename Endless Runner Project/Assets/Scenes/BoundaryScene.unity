@@ -381,12 +381,6 @@ Transform:
   m_Father: {fileID: 1498072356}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &731835328 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7124963640762464850, guid: 4d1f8ed94db12a34ea31a5b01700b74e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1723323113}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &770504199
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,8 +421,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1002649891}
   - component: {fileID: 1002649890}
-  - component: {fileID: 1002649893}
-  - component: {fileID: 1002649892}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -448,15 +440,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73cc5db3a7f3365439e6b6e732796c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstPlatform: {fileID: 731835328}
-  lastPlatform: {fileID: 1805484795}
-  generationPoint: {fileID: 695011564}
   objectPool: {fileID: 1625847700}
   spawnValues: {x: 39.98, y: 3.18, z: 0}
-  actvateRandomSpace: 0
-  distanceBetween: 0
-  distanceBetweenMin: 0
-  distanceBetweenMax: 0
+  hazardCount: 1
+  spawnWait: 2
+  startWait: 0
+  waveWait: 0
 --- !u!4 &1002649891
 Transform:
   m_ObjectHideFlags: 0
@@ -471,40 +460,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1002649892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002649889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c00749ec441dfe7439a483d60cdd0ade, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -5
---- !u!50 &1002649893
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002649889}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1168370830
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObject: {fileID: 7124963640762464873, guid: 4d1f8ed94db12a34ea31a5b01700b74e,
     type: 3}
-  pooledAmount: 2
+  pooledAmount: 1
 --- !u!4 &1625847701
 Transform:
   m_ObjectHideFlags: 0
@@ -921,12 +876,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d1f8ed94db12a34ea31a5b01700b74e, type: 3}
---- !u!4 &1805484795 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7124963640762464850, guid: 4d1f8ed94db12a34ea31a5b01700b74e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2059250923}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1809862418
 GameObject:
   m_ObjectHideFlags: 0
