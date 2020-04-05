@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Through
   - InvisibleObject
+  - Enemy
+  - Platform
+  - Flying Enemy
+  - Flying Enemy Controller
   layers:
   - Default
   - TransparentFX

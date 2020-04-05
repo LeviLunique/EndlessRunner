@@ -140,7 +140,7 @@ public class InvisibleObject : MonoBehaviour
     void CalculateVelocity()
     {
         //float targetVelocityX = directionalInput.x * moveSpeed;
-        float targetVelocityX = 0;
+        float targetVelocityX = moveSpeed;
         velocity.x = Mathf.SmoothDamp(velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below) ? accelerationTimeGrounded : accelerationTimeAirborne);
         velocity.y += gravity * Time.deltaTime;
     }
