@@ -27,11 +27,12 @@ public class GameController : MonoBehaviour
             for (int i = 0; i < hazardCount; i++)
             {
                 Vector3 spawnPosition = new Vector3(spawnValues.x, spawnValues.y, spawnValues.z);
+                
                 if (gameObject.tag == "Flying Enemy Controller") 
                 {
                     spawnPosition = new Vector3(spawnValues.x, Random.Range(minDistanceY, maxDistanceY), spawnValues.z);
                 }
-
+                
                 GameObject newObject = objectPools[Random.Range(0, objectPools.Length)].GetPooledObject();
 
                 newObject.transform.position = spawnPosition;

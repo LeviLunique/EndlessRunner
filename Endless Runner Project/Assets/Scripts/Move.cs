@@ -25,6 +25,7 @@ public class Move : MonoBehaviour
         {
             rigidbody.velocity = new Vector2(speed, rigidbody.velocity.y);
             animator.SetFloat("Speed", rigidbody.velocity.x);
+
         }
         else if (gameObject.tag == "Flying Enemy") 
         {
