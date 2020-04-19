@@ -222,6 +222,12 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.3}
   m_Size: {x: 0.22, y: 0.6}
   m_Direction: 0
+--- !u!4 &298376561 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1138407037069737521, guid: 8b309eb55775492489db66a566f6878b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5248287954421670169}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1002649889
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,6 +575,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d1f8ed94db12a34ea31a5b01700b74e, type: 3}
+--- !u!1 &1788197305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1788197306}
+  m_Layer: 8
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1788197306
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788197305}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.227, y: 0.508, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 298376561}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1809862418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,6 +1064,21 @@ PrefabInstance:
         type: 3}
       propertyPath: moveSpeed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220854032070788564, guid: 8b309eb55775492489db66a566f6878b,
+        type: 3}
+      propertyPath: attackPoint
+      value: 
+      objectReference: {fileID: 1788197306}
+    - target: {fileID: 6220854032070788564, guid: 8b309eb55775492489db66a566f6878b,
+        type: 3}
+      propertyPath: enemyLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 6220854032070788564, guid: 8b309eb55775492489db66a566f6878b,
+        type: 3}
+      propertyPath: attackRange
+      value: 0.42
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1252979270301813747, guid: 8b309eb55775492489db66a566f6878b, type: 3}

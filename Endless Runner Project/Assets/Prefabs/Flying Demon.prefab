@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 961012025177939810}
   - component: {fileID: 961012025177939815}
   - component: {fileID: 961012025177939814}
-  - component: {fileID: 4244665194099224654}
   - component: {fileID: 961012025177939809}
-  m_Layer: 0
+  - component: {fileID: 7424168211229985105}
+  - component: {fileID: 5106232820078582235}
+  m_Layer: 10
   m_Name: Flying Demon
   m_TagString: Flying Enemy
   m_Icon: {fileID: 0}
@@ -125,7 +126,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &961012025177939814
 CapsuleCollider2D:
@@ -141,20 +142,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.12, y: 0}
-  m_Size: {x: 0.24, y: 0.58}
+  m_Size: {x: 0.32, y: 0.66}
   m_Direction: 0
---- !u!114 &4244665194099224654
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 961012025177939821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a52c3090b9241f6479f95c58b2edd0bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &961012025177939809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +158,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: -2
   animator: {fileID: 0}
+--- !u!114 &7424168211229985105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961012025177939821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9794dd82911c0e14788a3a2a57a94db4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+--- !u!114 &5106232820078582235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961012025177939821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52c3090b9241f6479f95c58b2edd0bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

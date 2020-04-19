@@ -8,7 +8,6 @@ public class DestroyByBoundary : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log(other.name);
         characterInQuicksand = false;
         other.gameObject.SetActive(false);
     }
